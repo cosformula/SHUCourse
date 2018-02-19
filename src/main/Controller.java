@@ -20,7 +20,7 @@ public class Controller {
         subScenes = new Parent[7];
         subScenes[0] = FXMLLoader.load(getClass().getResource("Welcome.fxml"));
         subScenes[1] = FXMLLoader.load(getClass().getResource("MyCourses.fxml"));
-        subScenes[2] = FXMLLoader.load(getClass().getResource("MyCourses.fxml"));
+        subScenes[2] = FXMLLoader.load(getClass().getResource("/courseManagement/View.fxml"));
         subScenes[3] = FXMLLoader.load(getClass().getResource("/courseNote/View.fxml"));
         subScenes[4] = FXMLLoader.load(getClass().getResource("/courseQuery/View.fxml"));
         subScenes[5] = FXMLLoader.load(getClass().getResource("/gradeManagement/View.fxml"));
@@ -33,7 +33,8 @@ public class Controller {
                 VBox vb = (VBox) nd;
                 vb.setFillWidth(true);
                 vb.setId(idIndex.toString());
-                Label lb = (Label) vb.getChildren().get(0);
+                Label lb = (Label) vb.getChildren().get(1);
+                lb.getStyleClass().add("white-text");
                 vb.setOnMouseEntered(e->{
                     vb.setScaleX(1.5);
                     vb.setScaleY(1.5);

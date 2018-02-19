@@ -3,34 +3,32 @@
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controller">
    <children>
       <BorderPane fx:id="bp" layoutX="1.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <VBox fx:id="leftVBoxPane" alignment="TOP_CENTER" prefWidth="80.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <VBox fx:id="leftVBoxPane" alignment="TOP_CENTER" prefWidth="80.0" spacing="20.0" styleClass="blue-300" BorderPane.alignment="CENTER">
                <children>
-                   <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
+                   <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0" >
                        <children>
                            <Label>
                                <graphic>
-                                   <MaterialDesignIconView glyphSize="30" />
+                                   <FontAwesomeIconView fill="white" glyphSize="30" glyphName="HOME"/>
                                </graphic>
                            </Label>
-                           <Label text="首页" />
+                           <Label  text="首页" />
                        </children>
                    </VBox>
                    <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0">
                       <children>
                           <Label>
                               <graphic>
-                                  <MaterialDesignIconView glyphSize="30" />
+                                  <FontAwesomeIconView glyphSize="30" fill="white" glyphName="CALENDAR" />
                               </graphic>
                           </Label>
                           <Label text="我的课程" />
@@ -40,7 +38,7 @@
                        <children>
                            <Label>
                                <graphic>
-                                   <MaterialDesignIconView glyphSize="30" />
+                                   <FontAwesomeIconView glyphSize="30" fill="white" glyphName="EDIT"/>
                                </graphic>
                            </Label>
                            <Label text="排课模式" />
@@ -50,7 +48,7 @@
                        <children>
                            <Label>
                                <graphic>
-                                   <MaterialDesignIconView glyphSize="30" />
+                                   <FontAwesomeIconView glyphSize="30" fill="white" glyphName="STICKY_NOTE"/>
                                </graphic>
                            </Label>
                            <Label text="课程笔记" />
@@ -60,7 +58,7 @@
                        <children>
                            <Label>
                                <graphic>
-                                   <MaterialDesignIconView glyphSize="30" />
+                                   <FontAwesomeIconView glyphSize="30" fill="white" glyphName="SEARCH" />
                                </graphic>
                            </Label>
                            <Label text="课程查询" />
@@ -70,7 +68,7 @@
                        <children>
                            <Label>
                                <graphic>
-                                   <MaterialDesignIconView glyphSize="30" />
+                                   <FontAwesomeIconView glyphSize="30" fill="white" glyphName="FLAG"/>
                                </graphic>
                            </Label>
                            <Label text="成绩管理" />
@@ -80,7 +78,7 @@
                        <children>
                            <Label>
                                <graphic>
-                                   <MaterialDesignIconView glyphSize="30" />
+                                   <FontAwesomeIconView glyphSize="30" fill="white" glyphName="QUESTION"/>
                                </graphic>
                            </Label>
                            <Label text="关于我们" />
@@ -92,27 +90,6 @@
                </padding>
             </VBox>
          </left>
-         <top>
-            <MenuBar prefHeight="20.0" prefWidth="800.0" BorderPane.alignment="CENTER">
-              <menus>
-                <Menu mnemonicParsing="false" text="File">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-         </top>
       </BorderPane>
    </children>
 </AnchorPane>
