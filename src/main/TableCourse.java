@@ -1,4 +1,4 @@
-package myCourses;
+package main;
 
 import model.Course;
 

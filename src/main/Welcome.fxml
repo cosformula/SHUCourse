@@ -17,7 +17,7 @@
                <children>
                   <StackPane prefHeight="150.0">
                      <children>
-                        <Label text="赵逸群，你好，今天是星期一">
+                        <Label text="xxx，你好，今天是星期一">
                            <font>
                               <Font name="Microsoft YaHei UI Light" size="20.0" />
                            </font></Label>
