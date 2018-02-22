@@ -6,36 +6,36 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <AnchorPane prefHeight="520.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="courseQuery">
    <children>
       <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <FlowPane columnHalignment="CENTER" hgap="10.0" vgap="10.0">
+            <FlowPane columnHalignment="CENTER" hgap="10.0" vgap="10.0"  onKeyPressed="#onKeyPressed">
                <children>
-                  <TextField promptText="课程号" fx:id="courseNoField" />
-                  <TextField promptText="课程名"  fx:id="courseNameField"/>
-                  <TextField promptText="教师名"  fx:id="teacherNameField"/>
-                  <TextField promptText="上课时间"  fx:id="timeField"/>
-                  <TextField prefWidth="50.0" promptText="学分" fx:id="creditField" />
-                  <TextField prefWidth="50.0" promptText="校区"  fx:id="campusField"/>
-                  <Button mnemonicParsing="false" text="搜索" fx:id="searchButton"/>
+                  <TextField fx:id="courseNoField" promptText="课程号" />
+                  <TextField fx:id="courseNameField" promptText="课程名" />
+                  <TextField fx:id="teacherNameField" promptText="教师名" />
+                  <TextField fx:id="timeField" promptText="上课时间" />
+                  <TextField fx:id="creditField" prefWidth="50.0" promptText="学分" />
+                  <TextField fx:id="campusField" prefWidth="50.0" promptText="校区" />
+                  <Button fx:id="searchButton" mnemonicParsing="false" text="搜索" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </FlowPane>
-            <TableView prefWidth="200.0" VBox.vgrow="ALWAYS" fx:id="courseTable">
+            <TableView fx:id="courseTable" prefWidth="200.0" VBox.vgrow="ALWAYS">
               <columns>
                  <TableColumn prefWidth="75.0" text="课程号"> <cellValueFactory>
                     <PropertyValueFactory property="courseNo" />
                  </cellValueFactory>
                  </TableColumn>
-                 <TableColumn prefWidth="75.0" text="课程名"> <cellValueFactory>
+                 <TableColumn prefWidth="150.0" text="课程名"> <cellValueFactory>
                     <PropertyValueFactory property="courseName" />
                  </cellValueFactory>
                  </TableColumn>
@@ -54,7 +54,7 @@
                        <PropertyValueFactory property="credit" />
                     </cellValueFactory>
                  </TableColumn>
-                 <TableColumn prefWidth="75.0" text="时间"> <cellValueFactory>
+                 <TableColumn prefWidth="150.0" text="时间"> <cellValueFactory>
                     <PropertyValueFactory property="time" />
                  </cellValueFactory>
                  </TableColumn>
@@ -68,7 +68,7 @@
                  </TableColumn>
               </columns>
             </TableView>
-            <Pagination pageCount="30" />
+            <Pagination fx:id="pagination" maxPageIndicatorCount="20" pageCount="30" />
          </children>
       </VBox>
    </children>

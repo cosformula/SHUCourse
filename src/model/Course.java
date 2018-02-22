@@ -1,5 +1,7 @@
 package model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -7,17 +9,23 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Course {
+    @SerializedName("course_no")
     String courseNo;//学号
+    @SerializedName("course_name")
     String courseName;//姓名
     String credit;//学分
+    @SerializedName("teacher_no")
     String teacherNo;//教师号
+    @SerializedName("teacher_name")
     String teacherName;
     String time;
     String place;
     Integer capacity;//容量
     Integer enroll;//已选人数
     String campus;//校区
+    @SerializedName("q_time")
     String qTime;
+    @SerializedName("q_place")
     String qPlace;
     String term;//2017_1/ 2017_2/2017_3
     String status;//selected/waited/preview/locked
