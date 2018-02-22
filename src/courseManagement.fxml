@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="courseManagement">
+   <children>
+      <VBox layoutX="194.0" layoutY="46.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="54.0" prefWidth="600.0">
+               <children>
+                  <StackPane alignment="CENTER_LEFT">
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                     <children>
+                        <Label text="排课结果">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </StackPane>
+                  <Pane HBox.hgrow="ALWAYS" />
+                  <HBox alignment="CENTER" spacing="5.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="提交结果" />
+                        <Button mnemonicParsing="false" text="保存结果" />
+                        <Button mnemonicParsing="false" text="重新排课" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox fx:id="hbox" prefHeight="356.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <SplitPane fx:id="sp" dividerPositions="0.4" prefHeight="351.0" prefWidth="609.0" HBox.hgrow="ALWAYS">
+                     <items>
+                        <fx:include fx:id="courseGrid" source="/CourseGrid.fxml" />
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                          <items>
+                              <!--<StackPane prefHeight="150.0" prefWidth="200.0" />-->
+                              <TableView fx:id="courseTable">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="状态">
+                                       <cellValueFactory>
+                                          <PropertyValueFactory property="status" />
+                                       </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn prefWidth="75.0" text="课程名"> <cellValueFactory>
+                                          <PropertyValueFactory property="courseName" />
+                                    </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn prefWidth="75.0" text="教师名">
+                                       <cellValueFactory>
+                                          <PropertyValueFactory property="teacherName" />
+                                       </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn prefWidth="30.0" text="学分">
+                                       <cellValueFactory>
+                                          <PropertyValueFactory property="credit" />
+                                       </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn prefWidth="75.0" text="时间"> <cellValueFactory>
+                                          <PropertyValueFactory property="time" />
+                                    </cellValueFactory>
+                                    </TableColumn>
+                                    <!--<TableColumn prefWidth="75.0" text="人数/容量" >-->
+                                       <!--<cellValueFactory><PropertyValueFactory property="enroll"  />-->
+                                       <!--</cellValueFactory>-->
+                                       <!--<cellValueFactory><PropertyValueFactory property="enroll"  />-->
+                                       <!--</cellValueFactory>-->
+                                    <!--</TableColumn>-->
+                                 </columns>
+                              </TableView>
+                             <fx:include fx:id="courseQuery" source="courseQuery.fxml" />
+                          </items>
+                        </SplitPane>
+                     </items></SplitPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
