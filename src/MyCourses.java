@@ -1,6 +1,3 @@
-package main;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.ListPropertyBase;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,7 +14,7 @@ public class MyCourses {
     @FXML
     VBox vbox;
     public void initialize() throws Exception {
-        Parent courseGrid = FXMLLoader.load(getClass().getResource("/main/CourseGrid.fxml"));
+        Parent courseGrid = FXMLLoader.load(getClass().getResource("/CourseGrid.fxml"));
         System.out.println(courseGrid);
         vbox.getChildren().add(courseGrid);
         vbox.setVgrow(courseGrid,Priority.ALWAYS);

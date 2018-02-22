@@ -9,5 +9,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="jfoenix-8.0.1" level="project" />
     <orderEntry type="library" exported="" name="fontawesomefx-8.9" level="project" />
+    <orderEntry type="library" name="okhttp-3.9.1" level="project" />
+    <orderEntry type="library" name="okio-1.14.0" level="project" />
+    <orderEntry type="library" name="gson-2.6.2" level="project" />
   </component>
 </module>

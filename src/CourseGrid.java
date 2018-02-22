@@ -1,30 +1,34 @@
-package main;
-
-import javafx.beans.InvalidationListener;
 import javafx.beans.property.ListProperty;
-import javafx.beans.property.ReadOnlyBooleanProperty;
-import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.SimpleListProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.effect.BlendMode;
 import javafx.scene.layout.*;
 import model.Course;
 import model.Position;
 
+import java.net.URL;
+import java.util.LinkedList;
 import java.util.Random;
+import java.util.ResourceBundle;
 
-public class CourseGrid {
+public class CourseGrid  implements Initializable {
     @FXML
     GridPane gp;
     ListProperty<Course> courses;
-    public void initialize() throws Exception {
+    Boolean[][] timeTable;
+    @Override
+    public void initialize(URL location, ResourceBundle resources){
+        timeTable = new Boolean[][]{
+                {true,true,true,true,true,true,true,true,true,true,true,true,true},
+                {true,true,true,true,true,true,true,true,true,true,true,true,true},
+                {true,true,true,true,true,true,true,true,true,true,true,true,true},
+                {true,true,true,true,true,true,true,true,true,true,true,true,true},
+                {true,true,true,true,true,true,true,true,true,true,true,true,true}
+        };
         String[] colors = {"#2B2E4A", "#521262", "#903749", "#53354A", "#40514E", "#537780", "#3765a4", "#76a5a4", "#579870", "#e391b4", "#b8954e"};
         String[] weekdays = {"周一","周二","周三","周四","周五"};
         for(Integer i=0;i<14;i++){
@@ -52,6 +56,14 @@ public class CourseGrid {
                 System.out.println("Was replaced? " + change.wasReplaced());
                 System.out.println("Was permutated? " + change.wasPermutated());
                 for(Course course:change.getAddedSubList()){
+                    if(course.getStatus()!="selected"){
+                        continue;
+                    }
+                    else if(checkAvalble(course.getPositions())){
+                        fillTimeTable(course.getPositions());
+                    } else {
+                        continue;
+                    }
                     Random rand = new Random();
                     String color = colors[rand.nextInt(11)];
                     for(Position position:course.getPositions()){
@@ -59,7 +71,7 @@ public class CourseGrid {
                         pane.setAlignment(Pos.CENTER);
                         pane.setStyle("-fx-background-color:"+color+";");
                         Label courseLb = new Label(course.getCourseName());
-                        Label teacherLb = new Label("("+course.getTeacher_name()+")");
+                        Label teacherLb = new Label("("+course.getTeacherName()+")");
                         courseLb.setStyle("-fx-text-fill: white;-fx-font-weight: bold");
                         teacherLb.setStyle("-fx-text-fill: white;-fx-font-weight: bold");
                         pane.getChildren().addAll(courseLb,teacherLb);
@@ -68,15 +80,40 @@ public class CourseGrid {
                 }
             }
         });
-        courses.setValue(main.Main.courseFactory());
-
-        courses.add(new Course("0932SY01","机电系统创新实践","2","1000","蔡红霞","五7-9 含实验","不开",0,0,"","","","",""));
+//        courses.setValue(main.Main.courseFactory());
+    }
+    public Boolean checkAvalble(LinkedList<Position> positions){
+        for(Position position:positions) {
+            Integer day=position.getDay();
+            Integer end = position.getStart()+position.getRowSpan();
+            for(Integer p=position.getStart();p<end;p++){
+                System.out.println(day);
+                System.out.println(p);
+                if(timeTable[day-1][p-1] == false){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    public void fillTimeTable(LinkedList<Position> positions) {
+        for(Position position:positions) {
+            Integer day=position.getDay();
+            Integer end = position.getStart()+position.getRowSpan();
+            for(Integer p=position.getStart();p<end;p++){
+                timeTable[day-1][p-1] = false;
+            }
+        }
+    }
+    public void bindCourses(ListProperty<Course> courses){
+        this.courses.bindBidirectional(courses);
     }
     public GridPane getPane(){
         return gp;
     }
 
     public void setCourses(ObservableList<Course> courses) {
-        this.courses.set(courses);
+        this.courses.setValue(courses);
+//        this.courses.set(courses);
     }
 }

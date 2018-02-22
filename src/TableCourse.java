@@ -1,5 +1,3 @@
-package main;
-
 import model.Course;
 
 import javax.swing.*;
@@ -114,7 +112,7 @@ public class TableCourse extends JFrame {
                 } else if (flag == 1) {
                     Course course = courses[cellInfos.get(cellIndex).get("courseInfoIndex")];
                     String text = "<html><body>" + course.getCourseName() + "<br>"
-                            + course.getTeacher_name()+ "<br>"  + "@" +
+                            + course.getTeacherName()+ "<br>"  + "@" +
                             course.getTime() + "</body></html>";
                     JLabel jLabel = new JLabel(text, JLabel.CENTER);
                     jLabel.setFont(new Font("微软雅黑",1,15));

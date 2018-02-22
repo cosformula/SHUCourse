@@ -1,6 +1,5 @@
 package model;
 
-import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -11,17 +10,17 @@ public class Course {
     String courseNo;//学号
     String courseName;//姓名
     String credit;//学分
-    String teacher_no;//教师号
-    String teacher_name;
+    String teacherNo;//教师号
+    String teacherName;
     String time;
     String place;
     Integer capacity;//容量
     Integer enroll;//已选人数
     String campus;//校区
-    String q_time;
-    String q_place;
+    String qTime;
+    String qPlace;
     String term;//2017_1/ 2017_2/2017_3
-    String status;//selected/waited
+    String status;//selected/waited/preview/locked
 
     public LinkedList<Position> getPositions() {
         return positions;
@@ -34,19 +33,19 @@ public class Course {
         this.positions = positions;
     }
 
-    public Course(String courseNo, String courseName, String credit, String teacher_no, String teacher_name, String time, String place, Integer capacity, Integer enroll, String campus, String q_time, String q_place, String term, String status) {
+    public Course(String courseNo, String courseName, String credit, String teacherNo, String teacherName, String time, String place, Integer capacity, Integer enroll, String campus, String qTime, String qPlace, String term, String status) {
         this.courseNo = courseNo;
         this.courseName = courseName;
         this.credit = credit;
-        this.teacher_no = teacher_no;
-        this.teacher_name = teacher_name;
+        this.teacherNo = teacherNo;
+        this.teacherName = teacherName;
         this.time = time;
         this.place = place;
         this.capacity = capacity;
         this.enroll = enroll;
         this.campus = campus;
-        this.q_time = q_time;
-        this.q_place = q_place;
+        this.qTime = qTime;
+        this.qPlace = qPlace;
         this.term = term;
         this.status = status;
         this.calPositions();
@@ -104,12 +103,12 @@ public class Course {
         return credit;
     }
 
-    public String getTeacher_no() {
-        return teacher_no;
+    public String getTeacherNo() {
+        return teacherNo;
     }
 
-    public String getTeacher_name() {
-        return teacher_name;
+    public String getTeacherName() {
+        return teacherName;
     }
 
     public String getTime() {
@@ -132,12 +131,12 @@ public class Course {
         return campus;
     }
 
-    public String getQ_time() {
-        return q_time;
+    public String getqTime() {
+        return qTime;
     }
 
-    public String getQ_place() {
-        return q_place;
+    public String getqPlace() {
+        return qPlace;
     }
 
     public String getTerm() {
@@ -160,12 +159,12 @@ public class Course {
         this.credit = credit;
     }
 
-    public void setTeacher_no(String teacher_no) {
-        this.teacher_no = teacher_no;
+    public void setTeacherNo(String teacherNo) {
+        this.teacherNo = teacherNo;
     }
 
-    public void setTeacher_name(String teacher_name) {
-        this.teacher_name = teacher_name;
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
     public void setTime(String time) {
@@ -188,12 +187,12 @@ public class Course {
         this.campus = campus;
     }
 
-    public void setQ_time(String q_time) {
-        this.q_time = q_time;
+    public void setqTime(String qTime) {
+        this.qTime = qTime;
     }
 
-    public void setQ_place(String q_place) {
-        this.q_place = q_place;
+    public void setqPlace(String qPlace) {
+        this.qPlace = qPlace;
     }
 
     public void setTerm(String term) {

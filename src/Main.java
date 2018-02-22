@@ -1,29 +1,19 @@
-package main;
-
-import com.jfoenix.controls.JFXDecorator;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import login.Login;
 import com.jfoenix.controls.JFXBadge;
 import model.Course;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import java.util.*;
 
 public class Main extends Application {
@@ -38,7 +28,7 @@ public class Main extends Application {
         courseList.add(new Course("09326140","产品数据管理","2","1000","蔡红霞","一7-8 三9-10 含上机","不开",0,0,"","","","",""));
         courseList.add(new Course("09326149","计算机辅助设计A","2","1000","蔡红霞","一11-13 三5-6 上机","不开",0,0,"","","","",""));
         courseList.add(new Course("09326153","虚拟制造技术A","2","1000","蔡红霞","一9-10 三7-10 实验","不开",0,0,"","","","",""));
-        courseList.add(new Course("0932SY01","机电系统创新实践","2","1000","蔡红霞","五7-9 含实验","不开",0,0,"","","","",""));
+//        courseList.add(new Course("0932SY01","机电系统创新实践","2","1000","蔡红霞","五7-9 含实验","不开",0,0,"","","","",""));
         ObservableList<Course> coursesListObservable = FXCollections.observableList(courseList);
         return coursesListObservable;
     }
@@ -51,9 +41,9 @@ public class Main extends Application {
 //        decorator.setCustomMaximize(false);
 //        decorator.setText("SHU Course Helepr");
 //        decorator.setText("SHU model.Course Helper");
-        mainScene = new Scene(root, 800, 600);
+        mainScene = new Scene(root, 1024, 728);
         stage.setScene(mainScene);
-        stage.setResizable(false);
+//        stage.setResizable(false);
         Stage dialog = new Stage();
         dialog.setScene(Login.getLoginDialog(dialog));
         dialog.initOwner(stage);
