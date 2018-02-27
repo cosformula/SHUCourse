@@ -1,0 +1,25 @@
+{
+    "course_grades": [
+    {
+        "studentID": "15120863",
+        "studentName": "李腾飞",
+        "term": "2017_3",
+        "courseID": "11112222",
+        "courseName": "数据库",
+        "credit": 4,
+        "grade": 90,
+        "gpa": 4.0
+    },
+    {
+        "studentID": "15120863",
+        "studentName": "李腾飞",
+        "term": "2017_3",
+        "courseID": "11113333",
+        "courseName": "操作系统",
+        "credit": 4,
+        "grade": 89,
+        "gpa": 3.7
+    }
+    ],
+    "total": 2
+}

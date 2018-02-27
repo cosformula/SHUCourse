@@ -77,6 +77,7 @@ public class courseQuery implements Initializable {
     @FXML
     void onKeyPressed(KeyEvent key){
         if(key.getCode() == KeyCode.ENTER){
+            pagination.setCurrentPageIndex(0);
             getSearchResult();
         }
     }
