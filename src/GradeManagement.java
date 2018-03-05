@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class gradeManagement implements Initializable {
+public class GradeManagement implements Initializable {
     @FXML
     private ChoiceBox termChoiceBox;
     @FXML

@@ -1,6 +1,8 @@
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.ContextMenu;
@@ -13,7 +15,7 @@ import javafx.scene.layout.*;
 
 import model.Course;
 
-public class courseManagement {
+public class CourseManagement {
     @FXML
     HBox hbox;
     @FXML
@@ -29,13 +31,29 @@ public class courseManagement {
     @FXML
     Parent courseGrid;
     @FXML
+    Parent courseQuery;
+    @FXML
     CourseGrid courseGridController;
+    @FXML
+    CourseQuery courseQueryController;
     ListProperty<Course> courses;
+
+    public void doubleClick(){
+
+    }
+
     public void  initialize() throws Exception{
         System.out.println(courseGridController);
+        courseQueryController.initialize();
         courses = new SimpleListProperty<Course>();
         this.courses.setValue(Main.courseFactory());
         courseGridController.bindCourses(courses);
+        System.out.println("Father init");
+//        System.out.println(courseQueryController.slectedCourseProperty);
+        courseQueryController.slectedCourseProperty.addListener((o, old, nVal)->{
+            System.out.println(old);
+        });
+//        courseQueryController.bindDoubleClick(e->doubleClick());
         courseTable.setItems(courses);
         ContextMenu cm = new ContextMenu();
         MenuItem mi1 = new MenuItem("Menu 1");

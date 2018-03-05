@@ -18,11 +18,11 @@ public class MainController {
         subScenes = new Parent[7];
         subScenes[0] = FXMLLoader.load(getClass().getResource("Welcome.fxml"));
         subScenes[1] = FXMLLoader.load(getClass().getResource("MyCourses.fxml"));
-        subScenes[2] = FXMLLoader.load(getClass().getResource("courseManagement.fxml"));
-        subScenes[3] = FXMLLoader.load(getClass().getResource("courseNote.fxml"));
-        subScenes[4] = FXMLLoader.load(getClass().getResource("courseQuery.fxml"));
-        subScenes[5] = FXMLLoader.load(getClass().getResource("gradeManagement.fxml"));
-        subScenes[6] = FXMLLoader.load(getClass().getResource("aboutUs.fxml"));
+        subScenes[2] = FXMLLoader.load(getClass().getResource("CourseManagement.fxml"));
+        subScenes[3] = FXMLLoader.load(getClass().getResource("CourseNote.fxml"));
+        subScenes[4] = FXMLLoader.load(getClass().getResource("CourseQuery.fxml"));
+        subScenes[5] = FXMLLoader.load(getClass().getResource("GradeManagement.fxml"));
+        subScenes[6] = FXMLLoader.load(getClass().getResource("AboutUs.fxml"));
         bp.setCenter(subScenes[0]);
         Integer idIndex=0;
         String[] ids = {"welcome","myCourses"};

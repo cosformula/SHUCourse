@@ -2,18 +2,18 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import javafx.beans.property.ListProperty;
+import javafx.beans.property.Property;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Pagination;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import jdk.nashorn.internal.parser.JSONParser;
 import model.Course;
@@ -26,7 +26,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class courseQuery implements Initializable {
+public class CourseQuery{
     @FXML
     Button searchButton;
     @FXML
@@ -48,13 +48,27 @@ public class courseQuery implements Initializable {
     private TextField campusField;
 
     ListProperty<Course> courses;
+    public Property<Course> slectedCourseProperty;
     @FXML
     TableView courseTable;
 
     @FXML
     Pagination pagination;
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+
+    public void initialize() {
+        this.slectedCourseProperty = new SimpleObjectProperty<>();
+        System.out.println("Query init");
+
+        courseTable.setRowFactory( tv -> {
+            TableRow<Course> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    this.slectedCourseProperty.setValue(row.getItem());
+//                    System.out.println(this.slectedCourse.get());
+                }
+            });
+            return row ;
+        });
         courses = new SimpleListProperty<Course>();
         courses.setValue( FXCollections.observableList(new ArrayList<Course>()));
         courseTable.setItems(courses);
