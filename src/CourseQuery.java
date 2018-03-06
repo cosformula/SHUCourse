@@ -1,6 +1,7 @@
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleListProperty;
@@ -23,8 +24,7 @@ import okhttp3.Response;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class CourseQuery{
     @FXML
@@ -117,9 +117,14 @@ public class CourseQuery{
         JsonObject jsonObject = new JsonParser().parse(data).getAsJsonObject();
         Integer pageCount = jsonObject.get("total").getAsInt()/30;
         pagination.setPageCount(pageCount+1);
-        Course[] course = gson.fromJson(jsonObject.get("courses").toString(), Course[].class);
+        List<LinkedHashMap<String, Object>> courseDataList = new Gson().fromJson(jsonObject.get("courses").toString(), new TypeToken<List<LinkedHashMap<String, Object>>>() {}.getType());
+        LinkedList<Course> courseList = new LinkedList<Course>();
+        for(LinkedHashMap<String, Object> courseData : courseDataList) {
+            Course course = new Course(courseData);
+            courseList.add(course);
+        }
         courses.clear();
-        for(Course c:course){
+        for(Course c:courseList){
             courses.add(c);
         }
     }

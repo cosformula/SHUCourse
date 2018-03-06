@@ -35,4 +35,7 @@ public class Position {
         this.start = start;
         this.rowSpan = rowSpan;
     }
+    public String toString(){
+        return day.toString() + start.toString() + rowSpan.toString();
+    }
 }

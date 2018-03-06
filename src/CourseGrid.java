@@ -1,5 +1,6 @@
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -46,6 +47,9 @@ public class CourseGrid  implements Initializable {
             }
         }
         courses = new SimpleListProperty<Course>();
+        courses.addListener((ChangeListener<ObservableList<Course>>) (e,old,nVal)->{
+            System.out.println("detectchange");
+        });
         courses.addListener((ListChangeListener<Course>) (change)-> {
             System.out.println("Detected a change! ");
             while (change.next()) {
@@ -55,13 +59,23 @@ public class CourseGrid  implements Initializable {
                 System.out.println("Was removed? " + change.wasRemoved());
                 System.out.println("Was replaced? " + change.wasReplaced());
                 System.out.println("Was permutated? " + change.wasPermutated());
+                for(Course course:change.getRemoved()){
+                    releaseTimeTable(course.getPositions());
+//                    for(Position position:course.getPositions()) {
+//                        VBox pane = (VBox) gp.lookup("#" + course.getCourseNo() + course.getTeacherNo() + position.toString());
+//                        gp.getChildren().remove("."+course.getCourseNo()+course.getTeacherNo());
+//                    }
+                    gp.getChildren().removeAll(gp.lookupAll("."+course.getCourseNo()+course.getTeacherNo()));
+                }
+
                 for(Course course:change.getAddedSubList()){
-                    if(course.getStatus()!="selected"){
+                    if(course.getStatus()!="已选入"){
                         continue;
                     }
                     else if(checkAvalble(course.getPositions())){
                         fillTimeTable(course.getPositions());
                     } else {
+
                         continue;
                     }
                     Random rand = new Random();
@@ -69,6 +83,8 @@ public class CourseGrid  implements Initializable {
                     for(Position position:course.getPositions()){
                         VBox pane = new VBox();
                         pane.setAlignment(Pos.CENTER);
+                        pane.getStyleClass().add(course.getCourseNo()+course.getTeacherNo());
+//                        pane.setId(course.getCourseNo()+course.getTeacherNo()+position.toString());
                         pane.setStyle("-fx-background-color:"+color+";");
                         Label courseLb = new Label(course.getCourseName());
                         Label teacherLb = new Label("("+course.getTeacherName()+")");
@@ -102,6 +118,15 @@ public class CourseGrid  implements Initializable {
             Integer end = position.getStart()+position.getRowSpan();
             for(Integer p=position.getStart();p<end;p++){
                 timeTable[day-1][p-1] = false;
+            }
+        }
+    }
+    public void releaseTimeTable(LinkedList<Position> positions) {
+        for(Position position:positions) {
+            Integer day = position.getDay();
+            Integer end = position.getStart() + position.getRowSpan();
+            for (Integer p = position.getStart(); p < end; p++) {
+                timeTable[day - 1][p - 1] = true;
             }
         }
     }
