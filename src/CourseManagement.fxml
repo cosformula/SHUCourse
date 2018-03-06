@@ -57,7 +57,7 @@
                                           <PropertyValueFactory property="status" />
                                        </cellValueFactory>
                                     </TableColumn>
-                                    <TableColumn prefWidth="75.0" text="课程名"> <cellValueFactory>
+                                    <TableColumn prefWidth="175.0" text="课程名"> <cellValueFactory>
                                           <PropertyValueFactory property="courseName" />
                                     </cellValueFactory>
                                     </TableColumn>
@@ -66,12 +66,12 @@
                                           <PropertyValueFactory property="teacherName" />
                                        </cellValueFactory>
                                     </TableColumn>
-                                    <TableColumn prefWidth="30.0" text="学分">
+                                    <TableColumn prefWidth="45.0" text="学分">
                                        <cellValueFactory>
                                           <PropertyValueFactory property="credit" />
                                        </cellValueFactory>
                                     </TableColumn>
-                                    <TableColumn prefWidth="75.0" text="时间"> <cellValueFactory>
+                                    <TableColumn prefWidth="175.0" text="时间"> <cellValueFactory>
                                           <PropertyValueFactory property="time" />
                                     </cellValueFactory>
                                     </TableColumn>

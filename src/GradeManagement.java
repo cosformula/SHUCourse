@@ -3,18 +3,22 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.*;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableView;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import model.CourseGrade;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class GradeManagement implements Initializable {
@@ -22,11 +26,22 @@ public class GradeManagement implements Initializable {
     private ChoiceBox termChoiceBox;
     @FXML
     TableView courseGradeTable;
+    @FXML
+    WebView gradeWebView;
+    @FXML
+    LineChart<String, Double> gradeChart;
+    @FXML
+    CategoryAxis xAxis;
+    @FXML
+    NumberAxis yAxis;
+    @FXML
+    PieChart gradePieChart;
 
     ListProperty<CourseGrade> courseGrades;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //学期成绩
         courseGrades = new SimpleListProperty<CourseGrade>();
         courseGrades.setValue(FXCollections.observableList(new ArrayList<CourseGrade>()));
         courseGradeTable.setItems(courseGrades);
@@ -36,9 +51,28 @@ public class GradeManagement implements Initializable {
                     search(buildURL(terms[new_val.intValue()]));
                 }
         );
-
         search("");
-
+        //成绩大表
+        WebEngine webEngine = gradeWebView.getEngine();
+        webEngine.load(getClass().getResource("gradeTotalSampleUni.html").toExternalForm());
+        //成绩走势
+        //ObservableList<String> termName = FXCollections.observableArrayList();
+        double [] termGrade={3.5,3.6,3.3};
+        //termName.addAll(Arrays.asList(terms));
+        //xAxis.setCategories(termName);
+        //对于双轴图表，可以使用XYChart.Series类来定义多组数据
+        XYChart.Series<String, Double> series = new XYChart.Series<>();
+        for (int i = 0; i < terms.length; i++) {
+            //series.getData().add(new XYChart.Data<>(termName.get(i), termGrade[i]));
+            series.getData().add(new XYChart.Data<>(terms[i], termGrade[i]));
+        }
+        gradeChart.getData().add(series);
+        //成绩排名
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(
+                        new PieChart.Data("排名占比", 66),
+                        new PieChart.Data("其余比例", 230));
+        gradePieChart.setData(pieChartData);
     }
 
     void search(String url) {

@@ -42,6 +42,17 @@ public class CourseManagement {
 
     }
 
+
+    public Boolean isCourseInList(Course target){
+        String courseNo = target.getCourseNo();
+        String teacherNo = target.getTeacherNo();
+        for(Course c:courses){
+            if(c.getCourseNo() == courseNo && c.getTeacherNo() == teacherNo){
+                return false;
+            }
+        }
+        return true;
+    }
     public void  initialize() throws Exception{
         System.out.println(courseGridController);
         courseQueryController.initialize();
@@ -49,11 +60,12 @@ public class CourseManagement {
         this.courses.setValue(Main.courseFactory());
         courseGridController.bindCourses(courses);
         System.out.println("Father init");
-//        System.out.println(courseQueryController.slectedCourseProperty);
         courseQueryController.slectedCourseProperty.addListener((o, old, nVal)->{
-            System.out.println(old);
+            System.out.println(nVal);
+            if(isCourseInList(nVal)){
+                courses.add(nVal);
+            }
         });
-//        courseQueryController.bindDoubleClick(e->doubleClick());
         courseTable.setItems(courses);
         ContextMenu cm = new ContextMenu();
         MenuItem mi1 = new MenuItem("Menu 1");
