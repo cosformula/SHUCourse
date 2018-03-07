@@ -106,15 +106,25 @@ public class CourseManagement {
 //                bar.enqueue(new JFXSnackbar.SnackbarEvent("该课程已在课程列表中"));
             }
         });
-        courseTable.setRowFactory(tv -> {
-            TableRow<Course> row = new TableRow<>();
-            row.setOnKeyPressed(e -> {
-                if (e.getCode() == KeyCode.DELETE) {
-                    Integer index = courseTable.getSelectionModel().getSelectedIndex();
-                    deleteCourse(index);
-                }
-            });
-            return row;
+//        courseTable.setRowFactory(tv -> {
+//            TableRow<Course> row = new TableRow<>();
+//            row.setOnKeyPressed(e -> {
+//                System.out.println("key code");
+//                if (e.getCode() == KeyCode.DELETE) {
+//                    Integer index = courseTable.getSelectionModel().getSelectedIndex();
+//                    deleteCourse(index);
+//                }
+//            });
+//            return row;
+//        });
+        courseTable.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.DELETE || e.getCode() == KeyCode.BACK_SPACE) {
+                Integer index = courseTable.getSelectionModel().getSelectedIndex();
+                deleteCourse(index);
+            } else if (e.getCode() == KeyCode.ENTER) {
+                Integer index = courseTable.getSelectionModel().getSelectedIndex();
+                selectCourse(index);
+            }
         });
         courseTable.setItems(courses);
         ContextMenu cm = new ContextMenu();
