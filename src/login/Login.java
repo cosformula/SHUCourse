@@ -31,6 +31,9 @@
  */
 package login;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -46,12 +49,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import okhttp3.*;
 
 public class Login extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("JavaFX Welcome");
+        primaryStage.setTitle("登录");
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(10);
@@ -147,14 +151,10 @@ public class Login extends Application {
             @Override
 //            @FXML
             public void handle(ActionEvent e) {
-//                Stage stage;
-//                Parent root;
+
                 actiontarget.setText("Sign in button pressed");
-                stage.close();
-//                root = FXMLLoader.load(getClass().getResource("main.fxml"));
-//                Scene scene = new Scene(root);
-//                stage.setScene(scene);
-//                stage.show();
+                getLoginInfo(userTextField.getText(), pwBox.getText());
+//                stage.close();
             }
         });
 
@@ -163,6 +163,27 @@ public class Login extends Application {
         scene.getStylesheets().add(Login.class.getResource("Login.css").toExternalForm());
         return scene;
     }
+
+    public static final MediaType JSON
+            = MediaType.parse("application/json; charset=utf-8");
+
+    public static String getLoginInfo(String id, String password) {
+        OkHttpClient client = new OkHttpClient();
+        RequestBody body = RequestBody.create(JSON, "{\"card_id\":\"" + id + "\",\"password\":\"" + password + "\"}");
+        Request request = new Request.Builder()
+                .url("https://www.shuhelper.cn/api/users/login/").post(body).build();
+        String data = "";
+        try {
+            Response response = client.newCall(request).execute();
+            data = response.body().string();
+            System.out.println(data);
+            return data;
+        } catch (Exception e) {
+            System.out.print("http error");
+        }
+        return data;
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
