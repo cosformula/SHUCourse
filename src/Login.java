@@ -29,11 +29,8 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package login;
-
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -41,15 +38,15 @@ import static javafx.geometry.HPos.RIGHT;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Student;
 import okhttp3.*;
+import java.lang.reflect.Type;
+import java.util.Map;
 
 public class Login extends Application {
 
@@ -134,11 +131,15 @@ public class Login extends Application {
         PasswordField pwBox = new PasswordField();
         grid.add(pwBox, 1, 2);
 
+        CheckBox remeberButton = new CheckBox("记住我");
+//        remeberButton
+        grid.add(remeberButton, 0, 3);
+
         Button btn = new Button("登陆");
         HBox hbBtn = new HBox(10);
         hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
         hbBtn.getChildren().add(btn);
-        grid.add(hbBtn, 1, 4);
+        grid.add(hbBtn, 1, 3);
 
         final Text actiontarget = new Text();
         grid.add(actiontarget, 0, 6);
@@ -151,10 +152,9 @@ public class Login extends Application {
             @Override
 //            @FXML
             public void handle(ActionEvent e) {
-
                 actiontarget.setText("Sign in button pressed");
                 getLoginInfo(userTextField.getText(), pwBox.getText());
-//                stage.close();
+                stage.close();
             }
         });
 
@@ -164,19 +164,23 @@ public class Login extends Application {
         return scene;
     }
 
-    public static final MediaType JSON
-            = MediaType.parse("application/json; charset=utf-8");
-
     public static String getLoginInfo(String id, String password) {
         OkHttpClient client = new OkHttpClient();
-        RequestBody body = RequestBody.create(JSON, "{\"card_id\":\"" + id + "\",\"password\":\"" + password + "\"}");
+        RequestBody body = RequestBody.create(Main.JSON, "{\"card_id\":\"" + id + "\",\"password\":\"" + password + "\"}");
         Request request = new Request.Builder()
                 .url("https://www.shuhelper.cn/api/users/login/").post(body).build();
         String data = "";
         try {
             Response response = client.newCall(request).execute();
             data = response.body().string();
+            Gson gson = new Gson();
+            Type type = new TypeToken<Map<String, String>>(){}.getType();
+            Map<String, String> studentData = gson.fromJson(data, type);
+            Student student = new Student();
+            student.setName(studentData.get("name"));
             System.out.println(data);
+            System.out.println(student.getName());
+            Main.setStudent(student);
             return data;
         } catch (Exception e) {
             System.out.print("http error");

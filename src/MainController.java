@@ -17,12 +17,6 @@ public class MainController {
     public void initialize() throws Exception{
         subScenes = new Parent[7];
         subScenes[0] = FXMLLoader.load(getClass().getResource("Welcome.fxml"));
-        subScenes[1] = FXMLLoader.load(getClass().getResource("MyCourses.fxml"));
-        subScenes[2] = FXMLLoader.load(getClass().getResource("CourseManagement.fxml"));
-        subScenes[3] = FXMLLoader.load(getClass().getResource("CourseNote.fxml"));
-        subScenes[4] = FXMLLoader.load(getClass().getResource("CourseQuery.fxml"));
-        subScenes[5] = FXMLLoader.load(getClass().getResource("GradeManagement.fxml"));
-        subScenes[6] = FXMLLoader.load(getClass().getResource("AboutUs.fxml"));
         bp.setCenter(subScenes[0]);
         Integer idIndex=0;
         String[] ids = {"welcome","myCourses"};
@@ -43,13 +37,31 @@ public class MainController {
                 });
                 vb.setOnMouseClicked(e->{
                     System.out.println(vb.getId());
-                    switchCenter(vb.getId());
+                    try{
+                        switchCenter(vb.getId());
+                    } catch (Exception ex){
+                        ex.printStackTrace();
+                    }
+
                 });
                 idIndex+=1;
             }
         }
     }
-    private void switchCenter(String index){
+    private void switchCenter(String index) throws  Exception{
+        Integer i = Integer.parseInt(index);
+        if(subScenes[i] == null) {
+            switch (i){
+                case 1:subScenes[1] = FXMLLoader.load(getClass().getResource("MyCourses.fxml")); break;
+                case 2:subScenes[2] = FXMLLoader.load(getClass().getResource("CourseManagement.fxml")); break;
+                case 3:subScenes[3] = FXMLLoader.load(getClass().getResource("CourseNote.fxml")); break;
+                case 4:subScenes[4] = FXMLLoader.load(getClass().getResource("CourseQuery.fxml")); break;
+                case 5:subScenes[5] = FXMLLoader.load(getClass().getResource("GradeManagement.fxml")); break;
+                case 6:subScenes[6] = FXMLLoader.load(getClass().getResource("AboutUs.fxml")); break;
+            }
+
+        }
+
         bp.setCenter(subScenes[Integer.parseInt(index)]);
     }
 }

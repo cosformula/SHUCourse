@@ -1,5 +1,7 @@
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,9 +12,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import login.Login;
 import com.jfoenix.controls.JFXBadge;
 import model.Course;
+import model.Student;
+import okhttp3.MediaType;
 
 import java.util.*;
 
@@ -23,6 +26,14 @@ public class Main extends Application {
     @FXML private VBox leftVBoxPane;
     @FXML private BorderPane bp;
     private Parent[] subScenes;
+
+    public static Property<Student>  student;
+    public static void setStudent(Student stu){
+        student.setValue(stu);
+    }
+    public static final MediaType JSON
+            = MediaType.parse("application/json; charset=utf-8");
+
     public static ObservableList<Course> courseFactory() {
         List<Course> courseList = new ArrayList<Course>();
         courseList.add(new Course("09326140","产品数据管理","2","1000","蔡红霞","一7-8 三9-10 含上机","不开",0,0,"","","","",""));
@@ -33,6 +44,17 @@ public class Main extends Application {
         return coursesListObservable;
     }
     public void start(Stage primaryStage) throws Exception{
+        student  = new SimpleObjectProperty<Student>();
+        //        stage.setResizable(false);
+        Stage dialog = new Stage();
+        dialog.setScene(Login.getLoginDialog(dialog));
+        dialog.initOwner(stage);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setOnCloseRequest(e->{
+            Platform.exit();
+        });
+        dialog.showAndWait();
+
         stage = primaryStage;
 //        stage.initStyle(StageStyle.UNDECORATED);
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
@@ -43,15 +65,7 @@ public class Main extends Application {
 //        decorator.setText("SHU model.Course Helper");
         mainScene = new Scene(root, 1024, 728);
         stage.setScene(mainScene);
-//        stage.setResizable(false);
-        Stage dialog = new Stage();
-        dialog.setScene(Login.getLoginDialog(dialog));
-        dialog.initOwner(stage);
-        dialog.initModality(Modality.APPLICATION_MODAL);
-        dialog.setOnCloseRequest(e->{
-            Platform.exit();
-        });
-//        dialog.showAndWait();
+
         stage.show();
     }
 
