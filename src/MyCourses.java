@@ -27,19 +27,19 @@ public class MyCourses {
         Parent courseGrid = FXMLLoader.load(getClass().getResource("/CourseGrid.fxml"));
         System.out.println(courseGrid);
         vbox.getChildren().add(courseGrid);
-        vbox.setVgrow(courseGrid,Priority.ALWAYS);
-    }
-    public void getCourses(){
-        OkHttpClient client = new OkHttpClient();
+            vbox.setVgrow(courseGrid,Priority.ALWAYS);
+        }
+        public void getCourses(){
+            OkHttpClient client = new OkHttpClient();
 //        RequestBody body = RequestBody.create(Main.JSON, "{\"card_id\":\"" + id + "\",\"password\":\"" + password + "\"}");
-        Request request = new Request.Builder()
-                .url("https://www.shuhelper.cn/api/my-course/?token="+Main.student.getValue().getToken()).build();
-        String data = "";
-        try {
-            Response response = client.newCall(request).execute();
-            data = response.body().string();
-            Gson gson = new Gson();
-            Type type = new TypeToken<Map<String, String>>(){}.getType();
+            Request request = new Request.Builder()
+                    .url("https://www.shuhelper.cn/api/my-course/?token="+Main.student.getValue().getToken()).build();
+            String data = "";
+            try {
+                Response response = client.newCall(request).execute();
+                data = response.body().string();
+                Gson gson = new Gson();
+                Type type = new TypeToken<Map<String, String>>(){}.getType();
             Map<String, String> responseData = gson.fromJson(data, type);
             String courseDataEncrypted = responseData.get("data");
 
