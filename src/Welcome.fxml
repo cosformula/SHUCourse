@@ -6,43 +6,42 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Welcome">
-   <children>
-      <VBox layoutX="115.0" layoutY="58.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label fx:id="name" text="xxx">
-                     <font>
-                        <Font name="Microsoft YaHei UI Light" size="20.0" />
-                     </font>
-                  </Label>
-                   <Label text="你好，今天是星期一">
-                       <font>
-                           <Font name="Microsoft YaHei UI Light" size="20.0" />
-                       </font></Label>
-               </children>
-            </HBox>
-                 <Label contentDisplay="BOTTOM" text="2017-2018学年冬季学期，第九周">
-                     <font>
-                         <Font name="Microsoft YaHei UI Light" size="20.0" />
-                     </font>
-                 </Label>
-             <Label contentDisplay="BOTTOM" text="本学期共有9门课程">
-                 <font>
-                     <Font name="Microsoft YaHei UI Light" size="20.0" />
-                 </font>
-             </Label>
-             <Label contentDisplay="BOTTOM" text="您在八门课程里，记录了x条笔记和n个文件">
-                 <font>
-                     <Font name="Microsoft YaHei UI Light" size="20.0" />
-                 </font>
-             </Label>
-         </children>
-         <padding>
-            <Insets left="50.0" />
-         </padding>
-      </VBox>
-   </children>
+    <children>
+        <VBox layoutX="115.0" layoutY="58.0" prefHeight="400.0" prefWidth="600.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <!--<HBox>-->
+                    <!--<children>-->
+                        <!--<Label fx:id="name" text="xxx">-->
+                            <!--<font>-->
+                                <!--<Font name="Microsoft YaHei UI Light" size="20.0" />-->
+                            <!--</font>-->
+                        <!--</Label>-->
+                        <!--<Label text="，你好，今天是星期一">-->
+                            <!--<font>-->
+                                <!--<Font name="Microsoft YaHei UI Light" size="20.0" />-->
+                            <!--</font>-->
+                        <!--</Label>-->
+                    <!--</children>-->
+               <!--<padding>-->
+                  <!--<Insets left="20.0" />-->
+               <!--</padding>-->
+                <!--</HBox>-->
+                <!--<Label contentDisplay="BOTTOM" text="2017-2018学年冬季学期，第十一周">-->
+                    <!--<font>-->
+                        <!--<Font name="Microsoft YaHei UI Light" size="20.0" />-->
+                    <!--</font>-->
+               <!--<padding>-->
+                  <!--<Insets left="20.0" />-->
+               <!--</padding>-->
+                <!--</Label>-->
+            <WebView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" fx:id="webview" />
+            </children>
+            <padding>
+                <Insets top="20.0" />
+            </padding>
+        </VBox>
+    </children>
 </AnchorPane>
