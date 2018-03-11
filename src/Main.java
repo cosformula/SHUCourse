@@ -1,3 +1,4 @@
+import com.jfoenix.controls.JFXSnackbar;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.property.Property;
@@ -26,8 +27,8 @@ public class Main extends Application {
     @FXML private VBox leftVBoxPane;
     @FXML private BorderPane bp;
     private Parent[] subScenes;
-
     public static Property<Student>  student;
+    public static final String HOST = "http://127.0.0.1:5000";
     public static void setStudent(Student stu){
         student.setValue(stu);
     }
@@ -36,9 +37,9 @@ public class Main extends Application {
 
     public static ObservableList<Course> courseFactory() {
         List<Course> courseList = new ArrayList<Course>();
-        courseList.add(new Course("09326140","产品数据管理","2","1000","蔡红霞","一7-8 三9-10 含上机","不开",0,0,"","","","",""));
-        courseList.add(new Course("09326149","计算机辅助设计A","2","1000","蔡红霞","一11-13 三5-6 上机","不开",0,0,"","","","",""));
-        courseList.add(new Course("09326153","虚拟制造技术A","2","1000","蔡红霞","一9-10 三7-10 实验","不开",0,0,"","","","",""));
+//        courseList.add(new Course("09326140","产品数据管理","2","1000","蔡红霞","一7-8 三9-10 含上机","不开",0,0,"","","","",""));
+//        courseList.add(new Course("09326149","计算机辅助设计A","2","1000","蔡红霞","一11-13 三5-6 上机","不开",0,0,"","","","",""));
+//        courseList.add(new Course("09326153","虚拟制造技术A","2","1000","蔡红霞","一9-10 三7-10 实验","不开",0,0,"","","","",""));
 //        courseList.add(new Course("0932SY01","机电系统创新实践","2","1000","蔡红霞","五7-9 含实验","不开",0,0,"","","","",""));
         ObservableList<Course> coursesListObservable = FXCollections.observableList(courseList);
         return coursesListObservable;

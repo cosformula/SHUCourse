@@ -34,9 +34,9 @@ root {
     display: block;
 }
 
-.root {
-     -fx-background-image: url("background.jpg");
-}
+/*.root {*/
+     /*-fx-background-image: url("background.jpg");*/
+/*}*/
 
 .label {
     -fx-font-size: 12px;

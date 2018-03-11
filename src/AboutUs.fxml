@@ -1,20 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
+<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane prefHeight="520.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AboutUs">
    <children>
-      <Label layoutX="209.0" layoutY="100.0" prefHeight="520.0" prefWidth="720.0" text="About Us" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <font>
-            <Font size="57.0" />
-         </font>
+      <VBox prefHeight="520.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <TextFlow textAlignment="CENTER">
+               <children>
+                  <Label text="SHU Course Helper" textAlignment="CENTER">
+                     <font>
+                        <Font name="Bell MT" size="41.0" />
+                     </font>
+                  </Label>
+                  <Label text="Version 1.0" />
+               </children>
+            </TextFlow>
+            <JFXTextArea editable="false" prefHeight="200.0" prefWidth="200.0" text="&#10;  排课助手是17-18冬季学期Java程序设计（实践）的课程项目， 是为了解决排课过程中的困难而开发的小工具，主要实现了搜索课程并从心仪的课程中排列出一份完美的课表的功能，同时还具有管理并查看自己的课表，记录课程笔记，与教务系统打通，查看成绩的功能。&#10;&#10;  开发小组：&#10;    赵逸群（界面设计、排课模块、数据连接）&#10;    李腾飞（成绩查询模块）&#10;    朱嘉富（课程表模块）&#10;    郭喜龙（课程笔记模块）&#10;    梁胡坡（课程搜索模块）&#10;&#10;                                                                                                            03/2018" wrapText="true" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets left="50.0" right="50.0" top="50.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextArea>
+         </children>
          <padding>
-            <Insets left="100.0" />
+            <Insets top="20.0" />
          </padding>
-      </Label>
+      </VBox>
    </children>
 </AnchorPane>

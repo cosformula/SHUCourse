@@ -38,7 +38,6 @@ public class CourseManagement {
 
     @FXML Pane pane;
     ListProperty<Course> courses;
-
     JFXSnackbar bar;
 
     public Boolean isCourseInList(Course target){

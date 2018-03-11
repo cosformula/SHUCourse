@@ -1,64 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.web.HTMLEditor?>
 
-<AnchorPane prefHeight="520.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CourseNote">
+<AnchorPane fx:id="pane" prefHeight="520.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CourseNote">
     <children>
         <SplitPane dividerPositions="0.3127413127413127" layoutX="230.0" layoutY="105.0" orientation="VERTICAL" prefHeight="520.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" >
                     <children>
-                        <ScrollPane layoutX="134.0" prefHeight="159.0" prefWidth="718.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <ScrollPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <content>
-                                <FlowPane prefHeight="136.0" prefWidth="709.0">
+                                <FlowPane fx:id="flowPane" columnHalignment="CENTER" prefHeight="136.0" prefWidth="709.0">
                                     <children>
-                                        <Pane prefHeight="68.0" prefWidth="174.0">
-                                            <children>
-                                                <Button fx:id="b0" layoutX="35.0" layoutY="13.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="104.0" text="课程名" />
-                                            </children>
-                                        </Pane>
-                                        <Pane prefHeight="68.0" prefWidth="174.0">
-                                            <children>
-                                                <Button fx:id="b1" layoutX="35.0" layoutY="13.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="104.0" text="课程名" />
-                                            </children>
-                                        </Pane>
-                                        <Pane prefHeight="68.0" prefWidth="174.0">
-                                            <children>
-                                                <Button fx:id="b2" layoutX="35.0" layoutY="13.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="104.0" text="课程名" />
-                                            </children>
-                                        </Pane>
-                                        <Pane prefHeight="68.0" prefWidth="174.0">
-                                            <children>
-                                                <Button fx:id="b3" layoutX="35.0" layoutY="13.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="104.0" text="课程名" />
-                                            </children>
-                                        </Pane>
-                                        <Pane prefHeight="68.0" prefWidth="174.0">
-                                            <children>
-                                                <Button fx:id="b4" layoutX="35.0" layoutY="13.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="104.0" text="课程名" />
-                                            </children>
-                                        </Pane>
-                                        <Pane prefHeight="68.0" prefWidth="174.0">
-                                            <children>
-                                                <Button fx:id="b5" layoutX="35.0" layoutY="13.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="104.0" text="课程名" />
-                                            </children>
-                                        </Pane>
-                                        <Pane prefHeight="68.0" prefWidth="174.0">
-                                            <children>
-                                                <Button fx:id="b6" layoutX="35.0" layoutY="13.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="104.0" text="课程名" />
-                                            </children>
-                                        </Pane>
-                                        <Pane prefHeight="68.0" prefWidth="174.0">
-                                            <children>
-                                                <Button fx:id="b7" layoutX="35.0" layoutY="13.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="104.0" text="课程名" />
-                                            </children>
-                                        </Pane>
+                                        
                                     </children>
                                 </FlowPane>
                             </content>
@@ -78,6 +40,8 @@
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                     <children>
                                         <TreeView fx:id="treeview" layoutX="-12.0" layoutY="35.0" prefHeight="351.0" prefWidth="175.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                        <Label fx:id="lab" layoutY="74.0" prefHeight="30.0" prefWidth="51.0" text="  提示：" />
+                                        <TextArea fx:id="ta" layoutX="14.0" layoutY="117.0" prefHeight="150.0" prefWidth="161.0" />
                                     </children>
                                 </AnchorPane>
                             </items>

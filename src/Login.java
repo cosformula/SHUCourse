@@ -129,6 +129,7 @@ public class Login extends Application {
         grid.add(pw, 0, 2);
 
         PasswordField pwBox = new PasswordField();
+
         grid.add(pwBox, 1, 2);
 
         CheckBox remeberButton = new CheckBox("记住我");
@@ -153,10 +154,16 @@ public class Login extends Application {
 //            @FXML
             public void handle(ActionEvent e) {
                 actiontarget.setText("Sign in button pressed");
-                getLoginInfo(userTextField.getText(), pwBox.getText());
-                stage.close();
+                try{
+                    getLoginInfo(userTextField.getText(), pwBox.getText());
+                    stage.close();
+                }
+                catch(Exception ex){
+                    actiontarget.setText("登录异常，请重新尝试");
+                }
             }
         });
+
 
 
         Scene scene = new Scene(grid, 300, 275);
@@ -164,27 +171,26 @@ public class Login extends Application {
         return scene;
     }
 
-    public static String getLoginInfo(String id, String password) {
+
+    public static String getLoginInfo(String id, String password) throws Exception{
         OkHttpClient client = new OkHttpClient();
         RequestBody body = RequestBody.create(Main.JSON, "{\"card_id\":\"" + id + "\",\"password\":\"" + password + "\"}");
         Request request = new Request.Builder()
-                .url("https://www.shuhelper.cn/api/users/login/").post(body).build();
+                .url(Main.HOST+"/users/login/").post(body).build();
         String data = "";
-        try {
-            Response response = client.newCall(request).execute();
-            data = response.body().string();
-            Gson gson = new Gson();
-            Type type = new TypeToken<Map<String, String>>(){}.getType();
-            Map<String, String> studentData = gson.fromJson(data, type);
-            Student student = new Student();
-            student.setName(studentData.get("name"));
-            System.out.println(data);
-            System.out.println(student.getName());
-            Main.setStudent(student);
-            return data;
-        } catch (Exception e) {
-            System.out.print("http error");
-        }
+        Response response = client.newCall(request).execute();
+        data = response.body().string();
+        Gson gson = new Gson();
+        Type type = new TypeToken<Map<String, String>>(){}.getType();
+        Map<String, String> studentData = gson.fromJson(data, type);
+        Student student = new Student();
+        student.setName(studentData.get("name"));
+        student.setPassword(password);
+        student.setId(id);
+        student.setToken(studentData.get("token"));
+        System.out.println(data);
+        System.out.println(student.getName());
+        Main.setStudent(student);
         return data;
     }
 

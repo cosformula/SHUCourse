@@ -40,6 +40,8 @@ public class Course {
         this.place = new SimpleStringProperty((String) courseData.get("place"));
         Double capacity = (Double)courseData.get("capacity");
         Double enroll = (Double)courseData.get("enroll");
+        capacity = capacity == null ? 0: capacity;
+        enroll = enroll == null ? 0:enroll;
         this.capacity = new SimpleIntegerProperty(capacity.intValue());
         this.enroll = new SimpleIntegerProperty(enroll.intValue());
         this.campus = new SimpleStringProperty((String) courseData.get("campus"));
@@ -49,7 +51,6 @@ public class Course {
         this.status = new SimpleStringProperty();
         this.positions = calPositions();
     }
-
 
     public Course( String courseNo, String courseName, String credit, String teacherNo, String teacherName,
                    String time, String place, Integer capacity, Integer enroll, String campus, String qTime, String qPlace, String term, String status) {

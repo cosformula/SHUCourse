@@ -33,13 +33,13 @@
                      </children>
                   </StackPane>
                   <Pane HBox.hgrow="ALWAYS" />
-                  <HBox alignment="CENTER" spacing="5.0">
-                     <children>
-                        <Button mnemonicParsing="false" text="提交结果" />
-                        <Button mnemonicParsing="false" text="保存结果" />
-                        <Button mnemonicParsing="false" text="重新排课" />
-                     </children>
-                  </HBox>
+                  <!--<HBox alignment="CENTER" spacing="5.0">-->
+                     <!--<children>-->
+                        <!--<Button mnemonicParsing="false" text="提交结果" />-->
+                        <!--<Button mnemonicParsing="false" text="保存结果" />-->
+                        <!--<Button mnemonicParsing="false" text="重新排课" />-->
+                     <!--</children>-->
+                  <!--</HBox>-->
                </children>
             </HBox>
             <HBox fx:id="hbox" prefHeight="356.0" prefWidth="600.0" VBox.vgrow="ALWAYS">

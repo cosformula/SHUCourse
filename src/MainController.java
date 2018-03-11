@@ -1,9 +1,11 @@
+import com.jfoenix.controls.JFXSnackbar;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -11,12 +13,18 @@ import javafx.stage.Stage;
 public class MainController {
     Stage stage;
     Scene loginScene, mainScene;
+    @FXML
+    AnchorPane pane;
     @FXML private VBox leftVBoxPane;
     @FXML private BorderPane bp;
     private Parent[] subScenes;
+    public JFXSnackbar bar;
+
     public void initialize() throws Exception{
+        bar = new JFXSnackbar(pane);
         subScenes = new Parent[7];
         subScenes[0] = FXMLLoader.load(getClass().getResource("Welcome.fxml"));
+        subScenes[1] = FXMLLoader.load(getClass().getResource("MyCourses.fxml"));
         bp.setCenter(subScenes[0]);
         Integer idIndex=0;
         String[] ids = {"welcome","myCourses"};
@@ -48,6 +56,11 @@ public class MainController {
             }
         }
     }
+
+    public JFXSnackbar getBar(){
+        return bar;
+    }
+
     private void switchCenter(String index) throws  Exception{
         Integer i = Integer.parseInt(index);
         if(subScenes[i] == null) {

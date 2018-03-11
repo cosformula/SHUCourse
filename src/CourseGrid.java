@@ -75,7 +75,6 @@ public class CourseGrid  implements Initializable {
                     else if(checkAvalble(course.getPositions())){
                         fillTimeTable(course.getPositions());
                     } else {
-
                         continue;
                     }
                     Random rand = new Random();
@@ -88,9 +87,11 @@ public class CourseGrid  implements Initializable {
                         pane.setStyle("-fx-background-color:"+color+";");
                         Label courseLb = new Label(course.getCourseName());
                         Label teacherLb = new Label("("+course.getTeacherName()+")");
+                        Label palceLb = new Label("("+course.getPlace()+")");
                         courseLb.setStyle("-fx-text-fill: white;-fx-font-weight: bold");
                         teacherLb.setStyle("-fx-text-fill: white;-fx-font-weight: bold");
-                        pane.getChildren().addAll(courseLb,teacherLb);
+                        palceLb.setStyle("-fx-text-fill: white;-fx-font-weight: bold");
+                        pane.getChildren().addAll(courseLb,teacherLb,palceLb);
                         gp.add(pane,position.getDay(),position.getStart(),1,position.getRowSpan());
                     }
                 }

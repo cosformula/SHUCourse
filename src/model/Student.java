@@ -1,9 +1,18 @@
 package model;
 
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.ObservableList;
+import okhttp3.RequestBody;
+
 public class Student {
     public String name;
     public String id;
     public String password;
+
+    public Student() {
+        this.courses = new SimpleListProperty<Course>();
+    }
 
     public String getToken() {
         return token;
@@ -23,6 +32,11 @@ public class Student {
         this.name = name;
     }
 
+    public RequestBody buildBody(){
+        RequestBody body = RequestBody.create(Constant.JSON, "{\"card_id\":\"" + id + "\",\"password\":\"" + password + "\"}");
+        return body;
+    }
+
     public String getId() {
         return id;
     }
@@ -39,11 +53,15 @@ public class Student {
         this.password = password;
     }
 
-    public void setCourses(Course[] courses) {
-        this.courses = courses;
+    public ListProperty<Course> coursesProperty() {
+        return courses;
     }
 
-    public Course[] courses;
+    public void setCourses(ObservableList<Course> courses) {
+        this.courses.set(courses);
+    }
+
+    public ListProperty<Course> courses;
     public void getGrade(){
 
     }
