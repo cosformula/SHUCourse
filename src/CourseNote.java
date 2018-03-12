@@ -143,6 +143,7 @@ public class CourseNote implements Initializable {
                 public void handle(ActionEvent event) {
                     for(int i=0;i<courses.size();i++) {
                         if (event.getSource() == b[i]){     //获得被点击按钮对象
+                            lab.setText("提示:" + b[i].getText());
                             if(fn[i].exists() ) {           //对应课程笔记文件已存在
                                 if(fn[i].length()==0){
                                     Editor.setHtmlText("") ;    //文件为空则编辑器置空

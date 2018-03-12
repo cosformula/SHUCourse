@@ -40,7 +40,8 @@
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                     <children>
                                         <TreeView fx:id="treeview" layoutX="-12.0" layoutY="35.0" prefHeight="351.0" prefWidth="175.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                        <Label fx:id="lab" layoutY="74.0" prefHeight="30.0" prefWidth="51.0" text="  提示：" />
+                                        <Label fx:id="lab" layoutY="74.0" prefHeight="30.0" prefWidth="100.0"
+                                               text="  提示："/>
                                         <TextArea fx:id="ta" layoutX="14.0" layoutY="117.0" prefHeight="150.0" prefWidth="161.0" />
                                     </children>
                                 </AnchorPane>
