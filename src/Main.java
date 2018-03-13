@@ -28,7 +28,7 @@ public class Main extends Application {
     @FXML private BorderPane bp;
     private Parent[] subScenes;
     public static Property<Student>  student;
-    public static final String HOST = "http://127.0.0.1:5000";
+    public static final String HOST = "http://shuhelper.cn:5000";
     public static void setStudent(Student stu){
         student.setValue(stu);
     }
